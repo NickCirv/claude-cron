@@ -1,0 +1,48 @@
+{
+  "name": "claude-cron",
+  "version": "1.0.0",
+  "description": "Schedule recurring Claude Code tasks — crontab for AI",
+  "type": "module",
+  "bin": {
+    "claude-cron": "./bin/cron.js"
+  },
+  "main": "./src/index.js",
+  "files": [
+    "bin/",
+    "src/",
+    "banner.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node bin/cron.js start",
+    "test": "node --test src/*.test.js"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "cron",
+    "scheduler",
+    "ai",
+    "automation",
+    "anthropic"
+  ],
+  "author": "NickCirv",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "node-cron": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NickCirv/claude-cron.git"
+  },
+  "homepage": "https://github.com/NickCirv/claude-cron#readme",
+  "bugs": {
+    "url": "https://github.com/NickCirv/claude-cron/issues"
+  }
+}
