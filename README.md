@@ -1,3 +1,5 @@
+![Banner](banner.svg)
+
 # claude-cron
 
 Schedule recurring Claude Code tasks with cron expressions — crontab for AI.
