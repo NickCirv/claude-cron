@@ -1,59 +1,69 @@
-<div align="center">
+![Nicholas Ashkar — claude-cron](assets/nicholas-ashkar/banner.png)
 
 # claude-cron
 
-**Schedule recurring Claude Code tasks with cron expressions — crontab for AI**
+Schedules recurring prompts for an installed Claude CLI and keeps local execution logs.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?labelColor=0B0A09)](LICENSE)
-[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg?labelColor=0B0A09)](package.json)
 
-</div>
 
-## Install
 
-```bash
-npx github:NickCirv/claude-cron <command>
-```
+<a id="usage"></a>
 
-Or install globally:
+<a id="add-a-daily-9am-dependency-audit"></a>
 
-```bash
-npm i -g github:NickCirv/claude-cron
-```
-
-## Usage
-
-```bash
-# Add a daily 9am dependency audit
-claude-cron add "0 9 * * *" "Audit dependencies for security issues and summarize findings"
-
-# Add a weekly report (Monday 8am) in a specific project directory
-claude-cron add "0 8 * * 1" "Generate a code quality report" --name "weekly-review" --cwd ~/my-project
-
-# Start the background daemon
-claude-cron start
-
-# Check what's running
-claude-cron status
-```
-
-| Command | Description |
-|---------|-------------|
-| `add <schedule> <prompt>` | Add a new scheduled task (`-n` name, `-d` cwd) |
-| `list` | Show all tasks and daemon status |
-| `start` | Start the background daemon (`-f` foreground) |
-| `stop` | Stop the running daemon |
-| `status` | Show daemon status and task summary |
-| `run <id>` | Manually trigger a task immediately |
-| `remove <id>` | Remove a task by ID (alias: `rm`) |
-| `logs [id]` | Show execution history (`-n` limit, default 20) |
+<a id="check-whats-running"></a>
 
 ## What it does
 
-`claude-cron` runs a persistent background daemon that fires `claude` with your prompts on any cron schedule. Tasks are stored in `~/.claude-cron/tasks.json` and survive restarts. Each execution is logged with status, duration, stdout, and stderr — and new tasks are hot-reloaded within 60 seconds without restarting the daemon.
+- Cron-expression validation.
+- Named tasks.
+- Manual runs.
+- Background/foreground scheduler.
+- Per-task execution history.
 
-**Requirements:** Node.js 18+ and the Claude Code CLI (`claude`) on your PATH.
 
----
 
-<sub>Node ≥18 · MIT · by <a href="https://github.com/NickCirv">NickCirv</a></sub>
+<a id="install"></a>
+
+<a id="start-the-background-daemon"></a>
+
+## Quickstart
+
+Prerequisites: Node.js `>=18.0.0` and npm. The checkout below pins the source used for this documentation.
+
+```sh
+git clone https://github.com/NickCirv/claude-cron.git
+cd claude-cron
+git checkout 827c3d37a5857668bcf6e6e023dc70d5d8bc09b2
+npm install
+node bin/cron.js list
+```
+
+**Expected behavior (illustrative, not captured):** Lists locally configured tasks without creating a schedule.
+
+Examples are source-inspected, **not runtime-tested**. See the research record for verification gaps.
+
+## Boundaries and data
+
+Running a task invokes Claude in its configured working directory and can change that project. The daemon must remain running for scheduled execution. Authentication and current CLI compatibility are unverified.
+
+
+<a id="add-a-weekly-report-monday-8am-in-a-specific-project-directory"></a>
+
+## Development
+
+The manifest defines `npm test` as:
+
+```sh
+node --test
+```
+
+The captured suite is a smoke check, not end-to-end behavior coverage. Examples include “entry is valid JavaScript”. Tests were not run for this documentation revision.
+
+See [implementation and command reference](docs/REFERENCE.md) for the package scripts and inspected interfaces, and [research record](docs/RESEARCH.md) for the pinned source, document decisions and unresolved checks.
+
+## License and contact
+
+See [LICENSE](LICENSE) for the original terms and attribution. Legal text is unchanged.
+
+[Nicholas Ashkar](https://nicholashkar.com/) · [Discuss a project](https://nicholashkar.com/#oxblood-contact)
